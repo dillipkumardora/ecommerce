@@ -30,7 +30,7 @@
                         <a href="${contextRoot}/login">Login</a>
                     </li>
                      <li id="viewproducts">
-                        <a href="${contextRoot}/viewproducts">My Products</a>
+                        <a href="${contextRoot}/show/all/products">My Products</a>
                     </li>
                     <li id="contact">
                         <a href="${contextRoot}/contact">Contact Us</a>

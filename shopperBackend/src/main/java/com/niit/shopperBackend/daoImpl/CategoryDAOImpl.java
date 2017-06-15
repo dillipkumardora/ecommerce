@@ -20,14 +20,14 @@ public class CategoryDAOImpl implements CategoryDAO {
 		categories.add(category);
 		
 		category=new Category();
-		category.setId(1);
+		category.setId(2);
 		category.setName("Mobile Accessories");
 		category.setDescription("This is nice dude");
 		category.setImageURL("2.png");
 		categories.add(category);
 		
 		category=new Category();
-		category.setId(1);
+		category.setId(3);
 		category.setName("Electronic Instrument");
 		category.setDescription("This is vert nice dude");
 		category.setImageURL("3.png");
@@ -38,6 +38,16 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public List<Category> list() {
 		// TODO Auto-generated method stub
 		return categories;
+	}
+
+	@Override
+	public Category get(int id) {
+		for(Category category:categories){
+			
+			if(category.getId()==id)
+				return category;
+		}
+		return null;
 	}
 
 }
