@@ -23,19 +23,17 @@
 <title>Dillip Online Shopping-${title}</title>
 <script>
 	window.menu = '${title}';
+	window.contextRoot = '${contextRoot}'
 </script>
 <!-- Bootstrap Core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 <link href="${css}/mybootstrap.theme.css" rel="stylesheet">
+
+<!-- Bootstrap dataTable theme -->
+<link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="${css}/shop-homepage.css" rel="stylesheet">
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 
@@ -74,6 +72,13 @@
 
 		<!-- Bootstrap Core JavaScript -->
 		<script src="${js}/bootstrap.min.js"></script>
+		
+		<!-- jQuery data tables plugIn -->
+		<script src="${js}/jquery.dataTables.js"></script>
+		
+		<!--  data tables bootstrap Script-->
+		<script src="${js}/dataTables.bootstrap.js"></script>
+		
 		<script src="${js}/myapp.js"></script>
 
 	</div>

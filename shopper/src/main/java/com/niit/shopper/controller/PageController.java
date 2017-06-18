@@ -87,7 +87,7 @@ public class PageController {
 	public ModelAndView showCategoryProducts(@PathVariable("id") int id) {
 		ModelAndView mv = new ModelAndView("page");
 		
-		Category category=null;
+		Category category = null;
 		category = categoryDAO.get(id);
 		
 		mv.addObject("title",category.getName());
