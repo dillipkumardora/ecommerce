@@ -39,52 +39,52 @@
 
 <body>
 	<div class="wrapper">
-		<%@include file="./shared/navbar.jsp"%>
+
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+
+					<a class="navbar-brand" href="${contextRoot}/home">Home</a>
+				</div>
+
+
+			</div>
+			<!-- /.container -->
+		</nav>
+
+
+
+
+
+
+
 
 		<!-- Page Content -->
 		<div class="content">
-			<c:if test="${userClickHome == true}">
-				<%@include file="home.jsp"%>
-			</c:if>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+					
+					<div class="jumbotron">
+					<h1>${errorTitle}</h1>
+					<hr/>
+					
+					<blockquote style="word-wrap:break-word">
+					
+					${errorDescription}
+					</blockquote>
+					
+					</div>
+					</div>
+				</div>
+			</div>
 
-			<c:if test="${userClickAbout == true}">
-				<%@include file="about.jsp"%>
-			</c:if>
 
-
-			<c:if test="${userClickLogin == true}">
-				<%@include file="login.jsp"%>
-			</c:if>
-			<c:if test="${userClickContact == true}">
-				<%@include file="contact.jsp"%>
-			</c:if>
-
-			<c:if test="${userClickAllProducts == true or userClickCategoryProducts == true}">
-				<%@include file="viewproducts.jsp"%>
-			</c:if>
-			
-			<c:if test="${userClickShowProduct== true}">
-				<%@include file="singleProduct.jsp"%>
-			</c:if>
-			
 
 		</div>
 		<%@include file="./shared/footer.jsp"%>
 
-
-		<!-- jQuery -->
-		<script src="${js}/jquery.js"></script>
-
-		<!-- Bootstrap Core JavaScript -->
-		<script src="${js}/bootstrap.min.js"></script>
-		
-		<!-- jQuery data tables plugIn -->
-		<script src="${js}/jquery.dataTables.js"></script>
-		
-		<!--  data tables bootstrap Script-->
-		<script src="${js}/dataTables.bootstrap.js"></script>
-		
-		<script src="${js}/myapp.js"></script>
 
 	</div>
 </body>

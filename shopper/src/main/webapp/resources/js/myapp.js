@@ -27,6 +27,9 @@ $(function() {
 	
 	var $table = $('#productListTable');
 	//execute the code only where this table
+
+	console.log('Window.categoryid' + window.categoryId)
+
 	if($table.length){
 		//console.log('inside the table');
 		var jsonUrl = '';
@@ -67,15 +70,31 @@ $(function() {
 			        		 }
 			         },
 			         {
-			        	 data:'quantity'
+			        	 data:'quantity',
+			        	 mRender:function(data ,type, row){
+		        			 if(data > 1){
+		        				 return '<span style = "color:red"Out Of Stock!!</span>';
+		        			 }
+		        			 return data;
+		        		 }
 			         },
 			         {
 			        	 data: 'id',
 			        	 bSortable:false,
 			        	 mRender:function(data ,type, row){
 		        			 var str ='';
-		        			 str += '<a class="btn btn-primary" href="'+window.contextRoot+ '/show/'+data+'/product"><span class="glyphicon glyphicon-eye-open"></span></a> &#160;';
-		        			 str += '<a class="btn btn-success" href="'+window.contextRoot+ '/cart/add/'+data+'/product"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+		        	         str += '<a class="btn btn-primary" href="'+window.contextRoot+ '/show/'+data+'/product"><span class="glyphicon glyphicon-eye-open"></span></a> &#160;';
+		        	         
+		        	         if(row.quantity < 1){
+		        	        	 
+			        			 str += '<a class="btn btn-success disabled" href="javascript:voiid(0)"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+
+		        	         }
+		        	         else{
+			        			 str += '<a class="btn btn-success" href="'+window.contextRoot+ '/cart/add/'+data+'/product"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+
+		        	        	 
+		        	         }
 		        			 return str;
 
 		        		 }

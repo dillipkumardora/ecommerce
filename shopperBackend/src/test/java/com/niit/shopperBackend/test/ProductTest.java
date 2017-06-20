@@ -28,7 +28,7 @@ public class ProductTest {
 		productDAO = (ProductDAO) context.getBean("productDAO");
 
 	}
-	/*
+	/*	
 	@Test
 	public void testCRUDProduct(){
 		
@@ -46,20 +46,20 @@ public class ProductTest {
 				true,productDAO.add(product));
 		
 		
-		product = productDAO.get(2);
+		product = productDAO.get(65);
 		product.setName("one plus");
-		assertEquals("Something gonna wrong while updating product",
+		/*assertEquals("Something gonna wrong while updating product",
 				true,productDAO.update(product));
 		
 		assertEquals("Something gonna wrong while deleting the existing product",
 				true,productDAO.delete(product));
-		//list
+			//list
 		assertEquals("Something gonna wrong while fetching product",
 				4,productDAO.list().size());
 		
-	}*/
-	
-	
+	}
+	*/
+
 	
 	@Test
 	public void testListActiveProducts(){
