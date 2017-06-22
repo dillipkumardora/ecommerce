@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shopper.util.FileUploadUtility;
@@ -59,13 +61,39 @@ public class ManagementController {
 		return mv;
 	}
 	
+	
+	@RequestMapping(value="/{id}/product", method=RequestMethod.GET)
+    public ModelAndView showEditProducts(@PathVariable int id){
+		
+		ModelAndView mv =new ModelAndView("page");
+		mv.addObject("userClickManageProducts" ,true);
+		mv.addObject("title","Manage Products");
+		//fetch new product from database
+		Product nProduct =productDAO.get(id);
+		//set the product fetch from db
+		
+		mv.addObject("product" , nProduct);
+		
+		
+		return mv;
+	}
+	
 	//handling product submission
 	@RequestMapping(value="/products", method = RequestMethod.POST)
 public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, BindingResult results, Model model,
 		HttpServletRequest request){
 		
-		new ProductValidator().validate(mProduct,results);
+		if(mProduct.getId()==0){
 		
+		new ProductValidator().validate(mProduct,results);
+		}
+		
+		else{
+			if(!mProduct.getFile().getOriginalFilename().equals("")){
+				new ProductValidator().validate(mProduct,results);
+
+			}
+		}
 		//check the error if it is there
 		if(results.hasErrors()){
 			
@@ -79,8 +107,17 @@ public String handleProductSubmission(@Valid @ModelAttribute("product") Product 
 		
 		
 		logger.info(mProduct.toString());
-		//create a new product record
-		productDAO.add(mProduct);
+		
+		if(mProduct.getId()==0){
+			//create a new product record if id is 0
+			productDAO.add(mProduct);
+		}
+		else{
+			//update the product record if id is not zero
+
+			productDAO.update(mProduct);
+		}
+		
 		
 		if(!mProduct.getFile().getOriginalFilename().equals("")){
 			FileUploadUtility.uploadFile(request,mProduct.getFile(),mProduct.getCode());
@@ -90,6 +127,23 @@ public String handleProductSubmission(@Valid @ModelAttribute("product") Product 
 		return "redirect:/manage/products?operation=product";
 	}
 	
+	@RequestMapping(value = "/product/{id}/activation", method=RequestMethod.POST)
+	@ResponseBody
+	public String handleProductActivation(@PathVariable int id){
+		
+		Product product =productDAO.get(id);
+		boolean isActive = product.isActive();
+		//activate and deactivate based on the value on active field
+		product.setActive(!product.isActive());
+		//update the product
+		productDAO.update(product);
+		
+		
+		return (isActive)?
+				"You have Successfully Deactivate the product with id" +product.getId()
+				:"You have Successfully Activate the product with id" +product.getId();
+
+	}
 	//returning categories for all the request mapping
 	@ModelAttribute("categories")
 	public List<Category> getCategories(){
