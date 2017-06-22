@@ -15,6 +15,10 @@ $(function() {
 	case 'My Product':
 		$('#viewproducts').addClass('active');
 		break;
+		
+	case 'Manage Products':
+		$('#manageProducts').addClass('active');
+		break;
 	default:
 		$('#home').addClass('active');
 		$('#a_' + menu).addClass('active');
@@ -107,6 +111,16 @@ $(function() {
 			
 		});
 		
+	}
+	
+	
+	//dismissing the alert after 3 sec
+	
+	var $alert=$('.alert');
+	if($alert.length){
+		setTimeout(function(){
+			$alert.fadeOut('slow'); 
+		} ,4000)
 	}
 	
 });

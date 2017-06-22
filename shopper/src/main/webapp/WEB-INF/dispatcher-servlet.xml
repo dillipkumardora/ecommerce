@@ -21,6 +21,9 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+	<!-- id must be given -->
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
