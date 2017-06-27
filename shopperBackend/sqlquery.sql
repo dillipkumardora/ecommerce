@@ -45,6 +45,35 @@ INSERT INTO user
 VALUES('biswajit','sahoo','SUPPLIER','true','sahoo','sahoo@gmail.com','7777777777');
 
 
+CREATE TABLE address (
+id IDENTITY,
+user_id IDENTITY,
+address_line_one VARCHAR(255),
+address_line_two VARCHAR(50),
+city VARCHAR(50),
+state VARCHAR(50),
+country VARCHAR(50),
+postal_code VARCHAR(50),
+shipping BOOLEAN,
+billing BOOLEAN,
+CONSTRAINT pk_user_id PRIMARY KEY(id),
+
+);
+
+CREATE TABLE cart (
+id IDENTITY,
+user_id INTEGER,
+grand_total DOUBLE,
+cart_lines INTEGER,
+CONSTRAINT pk_user_id PRIMARY KEY(id),
+
+);
+
+
+
+
+
+
 CREATE TABLE product(
 id IDENTITY,
 code VARCHAR(20),

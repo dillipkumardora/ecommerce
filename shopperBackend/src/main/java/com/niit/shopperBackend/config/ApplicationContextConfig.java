@@ -23,7 +23,7 @@ import com.niit.shopperBackend.daoImpl.CategoryDAOImpl;
 public class ApplicationContextConfig {
 
 	
-	@Bean
+	@Bean("dataSource")
     public DataSource getDataSource()
 	{
 		BasicDataSource dataSource = new BasicDataSource();
@@ -47,6 +47,7 @@ public class ApplicationContextConfig {
     	properties.put("hibernate.show_sql", "true");
     	properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
     	properties.put("hibernate.format_sql", "true");
+    	properties.put("hibernate.hbm2ddl.auto", "update");
     	return properties;
 	}
 	

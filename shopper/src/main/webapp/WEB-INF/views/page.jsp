@@ -20,6 +20,10 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+
+<meta name="_csrf" content="${_csrf.headerName}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
+
 <title>Dillip Online Shopping-${title}</title>
 <script>
 	window.menu = '${title}';
@@ -52,9 +56,7 @@
 			</c:if>
 
 
-			<c:if test="${userClickLogin == true}">
-				<%@include file="login.jsp"%>
-			</c:if>
+			
 			<c:if test="${userClickContact == true}">
 				<%@include file="contact.jsp"%>
 			</c:if>
@@ -78,6 +80,10 @@
 
 		<!-- jQuery -->
 		<script src="${js}/jquery.js"></script>
+		
+		<!-- jQuery validation -->
+		<script src="${js}/jquery.validate.js"></script>
+		
 
 		<!-- Bootstrap Core JavaScript -->
 		<script src="${js}/bootstrap.min.js"></script>

@@ -8,10 +8,7 @@ $(function() {
 	case 'Contact Us':
 		$('#contact').addClass('active');
 		break;
-	case 'Login':
-		$('#login').addClass('active');
-		break;
-
+	
 	case 'My Product':
 		$('#viewproducts').addClass('active');
 		break;
@@ -25,6 +22,23 @@ $(function() {
 		break;
 	}
 	
+	
+	//to tackle csrf token
+	var token = $('meta[name="_csrf"]').attr('content');
+	var header = $('meta[name="_csrf_header"]').attr('content');
+
+	
+	
+	if(token.length >0 && header.length > 0){
+		
+		//set the token header for ajax request
+		
+		$(document).ajaxSend(function(e, xhr, options){
+			
+			xhr.setRequestHeader(header,token);
+		});
+		
+	}
 	//code for Jquery dataTable
 	//create DataSet
 	
@@ -91,11 +105,20 @@ $(function() {
 		        	         
 		        	         if(row.quantity < 1){
 		        	        	 
-			        			 str += '<a class="btn btn-success disabled" href="javascript:voiid(0)"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+			        			 str += '<a class="btn btn-success disabled" href="javascript:void(0)"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
 
 		        	         }
 		        	         else{
-			        			 str += '<a class="btn btn-success" href="'+window.contextRoot+ '/cart/add/'+data+'/product"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+		        	        	 
+		        	        	 if(userRole == 'ADMIN'){
+		        	        		 
+				        			 str += '<a class="btn btn-warning" href="'+window.contextRoot+ '/manage/'+data+'/product"><span class="glyphicon glyphicon-pencil"></span></a>';
+
+		        	        	 }
+		        	        	 else{
+				        			 str += '<a class="btn btn-success" href="'+window.contextRoot+ '/cart/add/'+data+'/product"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+
+		        	        	 }
 
 		        	        	 
 		        	         }
@@ -255,12 +278,98 @@ $(function() {
 			        				}
 			        			});
 			        		});
-			         }
-			        
+			         }			   
 			
-			
-		});
+		         });
 		
-	}
+	          }
 	
-});
+	//------------------
+	//-----------------
+	//validation code for category
+	
+	var $categoryForm = $('#categoryForm');
+	
+	if($categoryForm.length){
+		
+		$categoryForm.validate({
+			
+			rules:{
+						name:{
+								required:true,
+								minlength:2,
+							},
+		              description:{
+		            	  	required:true,
+			
+		              			}
+				
+			     },
+			     messages:{
+			    	 name:{
+			    		 required:'Plz Add Category Name',
+			    		 minlength:'The character of category must be greater than 2 !!'
+			    	 },
+			    	 description:{
+			    		 required:'Plz Add some description for Category',
+			    	 },
+			    	 
+			     },
+			     errorElement:'em',
+			     errorPlacement: function(error,element){
+			    	 //add the class of help-block
+			    	 error.addClass('help-block');
+			    	 
+			    	 //add error element after input element
+			    	 error.insertAfter(element);
+			     }
+		    });
+	      }
+	
+			///----------------
+	
+//validation for login
+	var $loginForm = $('#loginForm');
+	
+	if($loginForm.length){
+		
+		$loginForm.validate({
+			
+			rules:{
+						username:{
+								required:true,
+								email:true
+							},
+		              password:{
+		            	  	required:true
+			
+		              			}
+				
+			     },
+			     messages:{
+			    	 username:{
+			    		 required:'Plz give your  UserName',
+			    		 email:'Plz Give Your Email id !!'
+			    	 },
+			    	 password:{
+			    		 required:'Enter Your Password',
+			    	 },
+			    	 
+			     },
+			     errorElement:'em',
+			     errorPlacement: function(error,element){
+			    	 //add the class of help-block
+			    	 error.addClass('help-block');
+			    	 
+			    	 //add error element after input element
+			    	 error.insertAfter(element);
+			     }
+		    });
+	      }
+	
+	
+	
+	
+	
+	
+        });

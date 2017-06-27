@@ -1,12 +1,144 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<spring:url var="css" value="/resources/css" />
+<spring:url var="js" value="/resources/js" />
+<spring:url var="images" value="/resources/images" />
+
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Dillip Online Shopping-${title}</title>
+<script>
+	window.menu = '${title}';
+	window.contextRoot = '${contextRoot}'
+</script>
+<!-- Bootstrap Core CSS -->
+<link href="${css}/bootstrap.min.css" rel="stylesheet">
+<link href="${css}/mybootstrap.theme.css" rel="stylesheet">
+
+<!-- Bootstrap dataTable theme -->
+<link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="${css}/shop-homepage.css" rel="stylesheet">
+
+
 </head>
+
 <body>
-<h1 align="center">Login Page </h1>
+	<div class="wrapper">
+		<!-- Navigation -->
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="${contextRoot}/home">Online
+						Shopping</a>
+
+				</div>
+
+			</div>
+
+		</nav>
+
+
+		<!-- Page Content -->
+		<div class="content">
+			<div class="container">
+			<!-- it will display the credential is wrong -->
+				<c:if test="${not empty message}">
+
+					<div class="row">
+						<div class="col-md-offset-3 col-md-6">
+							<div class="alert alert-danger">${message}</div>
+
+						</div>
+					</div>
+				</c:if>
+
+				<div class="row">
+					<div class="col-md-offset-3 col-md-6">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3>Login</h3>
+							</div>
+							<div class="panel-body">
+								<form action="${contextRoot}/login" method="POST"
+									class="form-horizontal" id="loginForm">
+
+
+									<div class="form-group">
+										<label for="username" class="col-md-4 control-label">Email:</label>
+										<div class="col-md-8">
+											<input type="text" name="username" id="username"
+												class="form-control" />
+										</div>
+
+										<div class="form-group">
+											<label for="password" class="col-md-4 control-label">Password:</label>
+											<div class="col-md-8">
+												<input type="password" name="password" id="password"
+													class=" col-md-4 form-control" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="col-md-offset-4 col-md-8">
+												<input type="submit" value="submit" class="btn-btn-primary" />
+												<input type="hidden" name="${_csrf.parameterName}"
+													value="${_csrf.token}" />
+											</div>
+										</div>
+								</form>
+
+							</div>
+
+							<div class="panel-footer">
+								<div class="text-right">
+									User Registration--><a href="${contextRoot}/register"> Here
+									</a>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+
+			</div>
+
+
+
+		</div>
+		<%@include file="./shared/footer.jsp"%>
+
+
+		<!-- jQuery -->
+		<script src="${js}/jquery.js"></script>
+
+		<!-- jQuery validation -->
+		<script src="${js}/jquery.validate.js"></script>
+
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="${js}/bootstrap.min.js"></script>
+
+		<script src="${js}/myapp.js"></script>
+
+	</div>
 </body>
+
 </html>

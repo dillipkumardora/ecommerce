@@ -10,6 +10,7 @@
 
 	<properties>
 		<spring.version>4.3.8.RELEASE</spring.version>
+		<spring.security.version>4.2.2.RELEASE</spring.security.version>
 	</properties>
 	<dependencies>
 
@@ -54,6 +55,36 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+<!-- spring web flow -->
+<!-- https://mvnrepository.com/artifact/org.springframework.webflow/spring-webflow -->
+<dependency>
+    <groupId>org.springframework.webflow</groupId>
+    <artifactId>spring-webflow</artifactId>
+    <version>2.4.4.RELEASE</version>
+</dependency>
+
+<!-- Spring-security -->
+
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+ 
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-config</artifactId>
+    <version>${spring.security.version}</version>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-web</artifactId>
+    <version>${spring.security.version}</version>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-taglibs</artifactId>
+    <version>${spring.security.version}</version>
+</dependency>
+
 
 		<dependency>
 			<groupId>com.niit</groupId>
