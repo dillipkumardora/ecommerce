@@ -1,5 +1,6 @@
 package com.niit.shopper.handler;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.niit.shopper.model.RegisterModel;
@@ -11,6 +12,7 @@ import com.niit.shopperBackend.dto.User;
 @Component
 public class RegisterHandler {
 
+	@Autowired
 	private UserDAO userDAO;
 	
 	public RegisterModel init(){
